@@ -172,10 +172,7 @@ pre_install(){
     echo
     break
     done
-
-    echo
-    echo "Press any key to start...or Press Ctrl+C to cancel"
-    char=`get_char`
+    echo "Start the installation"
     #Install necessary dependencies
     if check_sys packageManager yum; then
         yum install -y wget unzip gzip curl nss
@@ -303,15 +300,11 @@ install(){
     fi
 
     clear
-    echo
-    echo -e "Congratulations, Shadowsocks-go server install completed!"
     echo -e "Your Server IP        : \033[41;37m $(get_ip) \033[0m"
     echo -e "Your Server Port      : \033[41;37m ${shadowsocksport} \033[0m"
     echo -e "Your Password         : \033[41;37m ${shadowsockspwd} \033[0m"
     echo -e "Your Encryption Method: \033[41;37m ${shadowsockscipher} \033[0m"
-    echo
-    echo "Welcome to visit:https://teddysun.com/392.html"
-    echo "Enjoy it!"
+    echo "BY Han£¬Enjoy it!"
     echo
 }
 
