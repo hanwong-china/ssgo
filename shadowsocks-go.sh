@@ -5,7 +5,7 @@ clear
 echo
 echo "#############################################################"
 echo "# Automatic installation of Shadowsocks-go                  #"
-echo "# By£ºHan              20211020  13:22                      #"
+echo "# By£ºHan              20211020  16:13                      #"
 echo "#############################################################"
 echo
 
@@ -167,22 +167,7 @@ pre_install(){
     while true
     do
     echo -e "Please select stream cipher for shadowsocks-go:"
-    for ((i=1;i<=${#ciphers[@]};i++ )); do
-        hint="${ciphers[$i-1]}"
-        echo -e "${green}${i}${plain}) ${hint}"
-    done
-    read -p "Which cipher you'd select(Default: ${ciphers[0]}):" pick
-    [ -z "$pick" ] && pick=1
-    expr ${pick} + 1 &>/dev/null
-    if [ $? -ne 0 ]; then
-        echo -e "[${red}Error${plain}] Please enter a number"
-        continue
-    fi
-    if [[ "$pick" -lt 1 || "$pick" -gt ${#ciphers[@]} ]]; then
-        echo -e "[${red}Error${plain}] Please enter a number between 1 and ${#ciphers[@]}"
-        continue
-    fi
-    shadowsockscipher=${ciphers[$pick-1]}
+    shadowsockscipher=${ciphers[0]}
     echo
     echo "---------------------------"
     echo "cipher = ${shadowsockscipher}"
