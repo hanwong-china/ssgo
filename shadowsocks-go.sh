@@ -5,7 +5,7 @@ clear
 echo
 echo "#############################################################"
 echo "# Automatic installation of Shadowsocks-go                  #"
-echo "# By£ºHan              20211020  16:13                      #"
+echo "# By Han              20211020  16:13                      #"
 echo "#############################################################"
 echo
 
@@ -136,9 +136,8 @@ pre_install(){
         exit 1
     fi
     # Set shadowsocks-go config password
-    echo "Please enter password for shadowsocks-go:"
+    echo "Password setting: Default"
     shadowsockspwd="wenwen"
-    echo
     echo "---------------------------"
     echo "password = ${shadowsockspwd}"
     echo "---------------------------"
@@ -147,12 +146,11 @@ pre_install(){
     while true
     do
     dport=$(shuf -i 9000-19999 -n 1)
-    echo -e "Please enter a port for shadowsocks-go [1-65535]"
+    echo -e "Port setting[1-65535]: Random"
     shadowsocksport=${dport}
     expr ${shadowsocksport} + 1 &>/dev/null
     if [ $? -eq 0 ]; then
         if [ ${shadowsocksport} -ge 1 ] && [ ${shadowsocksport} -le 65535 ] && [ ${shadowsocksport:0:1} != 0 ]; then
-            echo
             echo "---------------------------"
             echo "port = ${shadowsocksport}"
             echo "---------------------------"
@@ -166,19 +164,15 @@ pre_install(){
     # Set shadowsocks config stream ciphers
     while true
     do
-    echo -e "Please select stream cipher for shadowsocks-go:"
+    echo -e "Cipher setting: Default"
     shadowsockscipher=${ciphers[0]}
-    echo
     echo "---------------------------"
     echo "cipher = ${shadowsockscipher}"
     echo "---------------------------"
     echo
     break
     done
-
-    echo
-    echo "Press any key to start...or Press Ctrl+C to cancel"
-    char=`get_char`
+    echo "Start the installation"
     #Install necessary dependencies
     if check_sys packageManager yum; then
         yum install -y wget unzip gzip curl nss
@@ -306,15 +300,11 @@ install(){
     fi
 
     clear
-    echo
-    echo -e "Congratulations, Shadowsocks-go server install completed!"
     echo -e "Your Server IP        : \033[41;37m $(get_ip) \033[0m"
     echo -e "Your Server Port      : \033[41;37m ${shadowsocksport} \033[0m"
     echo -e "Your Password         : \033[41;37m ${shadowsockspwd} \033[0m"
     echo -e "Your Encryption Method: \033[41;37m ${shadowsockscipher} \033[0m"
-    echo
-    echo "Welcome to visit:https://teddysun.com/392.html"
-    echo "Enjoy it!"
+    echo "BY Han£¬Enjoy it!"
     echo
 }
 
